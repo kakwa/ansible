@@ -196,243 +196,42 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
+# iTerm2 Material Design - Palenight theme for Alacritty
+# Source : https://github.com/JonathanSpeek/palenight-iterm2
+
+# 0x From the Ubuntu terminal color palette
 colors:
-  # Default colors
+  # 0x Default colors
   primary:
-    background: '0x002b36'
-    foreground: '0x839496'
-    foreground: '0xffffe0'
+    background: '0x171c20'
+    foreground: '0xeeeeec'
 
-  # Normal colors
+  # 0x Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0xbbbbbb'
+    cursor: '0xb4d5ff'
+
+  # 0x Normal colors
   normal:
-    black:   '0x073642'
-    red:     '0xdc322f'
-    green:   '0x859900'
-    green:   '0x859900'
-    yellow:  '0xb58900'
-    blue:    '0x268bd2'
-    magenta: '0xd33682'
-    cyan:    '#66FFFF'
-    white:   '0xeee8d5'
+    black:   '0x2e3436'
+    red:     '0xcc0000'
+    green:   '0x4e9a06'
+    yellow:  '0xc4a000'
+    blue:    '0x3465a4'
+    magenta: '0xc792ea'
+    cyan:    '0x06989a'
+    white:   '0xd3d7cf'
 
-  # Bright colors
+  # 0x Bright colors
   bright:
-    black:   '0x002b36'
-    red:     '0xcb4b16'
-    green:   '0x586e75'
-    yellow:  '0x657b83'
-    blue:    '0x839496'
-    magenta: '0x6c71c4'
-    cyan:    '0x93a1a1'
-    white:   '0xfdf6e3'
-
-# XTerm's default colors
-#colors:
-#  # Default colors
-#  primary:
-#    background: '0x000000'
-#    foreground: '0xffffff'
-#  # Normal colors
-#  normal:
-#    black:   '0x000000'
-#    red:     '0xcd0000'
-#    green:   '0x00cd00'
-#    yellow:  '0xcdcd00'
-#    blue:    '0x0000ee'
-#    magenta: '0xcd00cd'
-#    cyan:    '0x00cdcd'
-#    white:   '0xe5e5e5'
-#
-#  # Bright colors
-#  bright:
-#    black:   '0x7f7f7f'
-#    red:     '0xff0000'
-#    green:   '0x00ff00'
-#    yellow:  '0xffff00'
-#    blue:    '0x5c5cff'
-#    magenta: '0xff00ff'
-#    cyan:    '0x00ffff'
-#    white:   '0xffffff'
-
-# Colors (Gruvbox dark)
-colors:
-  # Default colors
-  primary:
-    # hard contrast: background = '0x1d2021'
-    background: '0x282828'
-    # soft contrast: background = '0x32302f'
-    foreground: '0xebdbb2'
-
-  # Normal colors
-  normal:
-    black:   '0x282828'
-    red:     '0xcc241d'
-    green:   '0x98971a'
-    yellow:  '0xd79921'
-    blue:    '0x458588'
-    magenta: '0xb16286'
-    cyan:    '0x689d6a'
-    white:   '0xa89984'
-
-  # Bright colors
-  bright:
-    black:   '0x928374'
-    red:     '0xfb4934'
-    green:   '0xb8bb26'
-    yellow:  '0xfabd2f'
-    blue:    '0x83a598'
-    magenta: '0xd3869b'
-    cyan:    '0x8ec07c'
-    white:   '0xebdbb2'
-
-# Colors (Tomorrow Night)
-#colors:
-  # Default colors
-  #primary:
-  #background: '#1d1d1d'
-  #foreground: '#c5c8c6'
-
-    # Bright and dim foreground colors
-    #
-    # The dimmed foreground color is calculated automatically if it is not
-    # present. If the bright foreground color is not set, or
-    # `draw_bold_text_with_bright_colors` is `false`, the normal foreground
-    # color will be used.
-    #dim_foreground: '#828482'
-    #bright_foreground: '#eaeaea'
-
-  # Cursor colors
-  #
-  # Colors which should be used to draw the terminal cursor.
-  #
-  # Allowed values are CellForeground/CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  #cursor:
-  #  text: CellBackground
-  #  cursor: CellForeground
-
-  # Vi mode cursor colors
-  #
-  # Colors for the cursor when the vi mode is active.
-  #
-  # Allowed values are CellForeground/CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  #vi_mode_cursor:
-  #  text: CellBackground
-  #  cursor: CellForeground
-
-  # Search colors
-  #
-  # Colors used for the search bar and match highlighting.
-  #search:
-    # Allowed values are CellForeground/CellBackground, which reference the
-    # affected cell, or hexadecimal colors like #ff00ff.
-    #matches:
-    #  foreground: '#000000'
-    #  background: '#ffffff'
-    #focused_match:
-    #  foreground: '#ffffff'
-    #  background: '#000000'
-
-  # Keyboard hints
-  #hints:
-    # First character in the hint label
-    #
-    # Allowed values are CellForeground/CellBackground, which reference the
-    # affected cell, or hexadecimal colors like #ff00ff.
-    #start:
-    #  foreground: '#1d1f21'
-    #  background: '#e9ff5e'
-
-    # All characters after the first one in the hint label
-    #
-    # Allowed values are CellForeground/CellBackground, which reference the
-    # affected cell, or hexadecimal colors like #ff00ff.
-    #end:
-    #  foreground: '#e9ff5e'
-    #  background: '#1d1f21'
-
-  # Line indicator
-  #
-  # Color used for the indicator displaying the position in history during
-  # search and vi mode.
-  #
-  # By default, these will use the opposing primary color.
-  #line_indicator:
-  #  foreground: None
-  #  background: None
-
-  # Footer bar
-  #
-  # Color used for the footer bar on the bottom, used by search regex input,
-  # hyperlink URI preview, etc.
-  #
-  #footer_bar:
-  #  background: '#c5c8c6'
-  #  foreground: '#1d1f21'
-
-  # Selection colors
-  #
-  # Colors which should be used to draw the selection area.
-  #
-  # Allowed values are CellForeground/CellBackground, which reference the
-  # affected cell, or hexadecimal colors like #ff00ff.
-  #selection:
-  #  text: CellBackground
-  #  background: CellForeground
-
-  # Normal colors
-  #normal:
-  #  black:   '#1d1f21'
-  #  red:     '#cc6666'
-  #  green:   '#b5bd68'
-  #  yellow:  '#f0c674'
-  #  blue:    '#81a2be'
-  #  magenta: '#b294bb'
-  #  cyan:    '#8abeb7'
-  #  white:   '#c5c8c6'
-
-  # Bright colors
-  #bright:
-  #  black:   '#666666'
-  #  red:     '#d54e53'
-  #  green:   '#b9ca4a'
-  #  yellow:  '#e7c547'
-  #  blue:    '#7aa6da'
-  #  magenta: '#c397d8'
-  #  cyan:    '#70c0b1'
-  #  white:   '#eaeaea'
-
-  # Dim colors
-  #
-  # If the dim colors are not set, they will be calculated automatically based
-  # on the `normal` colors.
-  #dim:
-  #  black:   '#131415'
-  #  red:     '#864343'
-  #  green:   '#777c44'
-  #  yellow:  '#9e824c'
-  #  blue:    '#556a7d'
-  #  magenta: '#75617b'
-  #  cyan:    '#5b7d78'
-  #  white:   '#828482'
-
-  # Indexed Colors
-  #
-  # The indexed colors include all colors from 16 to 256.
-  # When these are not set, they're filled with sensible defaults.
-  #
-  # Example:
-  #   `- { index: 16, color: '#ff00ff' }`
-  #
-  #indexed_colors: []
-
-  # Transparent cell backgrounds
-  #
-  # Whether or not `window.opacity` applies to all cell backgrounds or only to
-  # the default background. When set to `true` all cells will be transparent
-  # regardless of their background color.
-  #transparent_background_colors: false
+    black:   '0x555753'
+    red:     '0xef2929'
+    green:   '0x8ae234'
+    yellow:  '0xfce94f'
+    blue:    '0x729fcf'
+    magenta: '0xe1acff'
+    cyan:    '0x34e2e2'
+    white:   '0xeeeeec'
 
 # Bell
 #
