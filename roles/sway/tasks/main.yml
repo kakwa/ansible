@@ -4,6 +4,7 @@
       name:
       - sway
       - kitty
+      - alacritty
       - python3-i3ipc
       - swaylock
       - grimshot
@@ -53,6 +54,22 @@
   copy:
     src: kitty.conf
     dest: /etc/xdg/kitty/kitty.conf 
+    mode: 0644
+    owner: root
+    group: root
+
+- name: ensures /etc/xdg/alacritty/ dir exists
+  file:
+    path: "/etc/xdg/alacritty/"
+    mode: 0755
+    owner: root
+    group: root
+    state: directory
+
+- name: Install alacritty configuration
+  copy:
+    src: alacritty.yml
+    dest: /etc/xdg/alacritty/alacritty.yml
     mode: 0644
     owner: root
     group: root
