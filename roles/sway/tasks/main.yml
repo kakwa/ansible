@@ -27,7 +27,7 @@
 
 - name: Install workspace switcher script
   copy:
-    src: sway-window-cycle.py
+    src: sway-workspace-cycle.py
     dest: "/usr/local/bin/sway-workspace-cycle.py"
     mode: 0755
     owner: root
