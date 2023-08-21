@@ -196,10 +196,7 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-# iTerm2 Material Design - Palenight theme for Alacritty
-# Source : https://github.com/JonathanSpeek/palenight-iterm2
-
-# 0x From the Ubuntu terminal color palette
+# Derived from the Ubuntu terminal color palette
 colors:
   # 0x Default colors
   primary:
@@ -215,9 +212,9 @@ colors:
   normal:
     black:   '0x2e3436'
     red:     '0xcc0000'
-    green:   '0x4e9a06'
+    green:   '0x8de539'
     yellow:  '0xc4a000'
-    blue:    '0x3465a4'
+    blue:    '0x599aed'
     magenta: '0xc792ea'
     cyan:    '0x06989a'
     white:   '0xd3d7cf'
@@ -226,7 +223,7 @@ colors:
   bright:
     black:   '0x555753'
     red:     '0xef2929'
-    green:   '0x8ae234'
+    green:   '0xbbff7a'
     yellow:  '0xfce94f'
     blue:    '0x729fcf'
     magenta: '0xe1acff'

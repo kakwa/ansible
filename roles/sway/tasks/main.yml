@@ -9,6 +9,7 @@
       - swaylock
       - grimshot
       - xdg-desktop-portal-wlr
+      - debian-edu-artwork-emerald
       - suckless-tools
       - flameshot
       - pipewire
