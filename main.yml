@@ -1,0 +1,7 @@
+---
+- name: Configure my personal hosts
+  hosts: localhost
+  become: true
+  connection: local 
+  roles:
+    - sway

@@ -1,0 +1,58 @@
+---
+- name: Install sway stuff
+  apt:
+      name:
+      - sway
+      - kitty
+      - python3-i3ipc
+      - swaylock
+      - grimshot
+      - xdg-desktop-portal-wlr
+      - suckless-tools
+      - flameshot
+      - pipewire
+      - pipewire-pulse
+      - swayidle
+      - i3status
+      - firefox
+      - fonts-dejavu
+
+- name: Install window switcher script
+  copy:
+    src: sway-window-cycle.py
+    dest: "/usr/local/bin/sway-window-cycle.py"
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Install workspace switcher script
+  copy:
+    src: sway-window-cycle.py
+    dest: "/usr/local/bin/sway-workspace-cycle.py"
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Install sway configuration
+  copy:
+    src: config
+    dest: /etc/sway/config
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Install i3 status configuration
+  copy:
+    src: i3status.conf
+    dest: /etc/i3status.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Install kitty configuration
+  copy:
+    src: kitty.conf
+    dest: /etc/xdg/kitty/kitty.conf 
+    mode: 0644
+    owner: root
+    group: root
