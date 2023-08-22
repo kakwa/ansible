@@ -4,7 +4,7 @@ My Ansible configuration
 
 # Running
 
-```
-as root
+```shell
+# as root
 ansible-playbook main.yml
 ```
