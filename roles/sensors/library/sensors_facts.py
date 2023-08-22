@@ -95,8 +95,11 @@ def list_temp_sensors():
         category = get_category(name)
         if category is not None:
             ret[category] += temp_sensors
-        for cat in ret:
-            ret[cat] = sort_files_by_content(ret[cat])
+
+    # Sort the Sensors by temperature
+    for cat in ret:
+        ret[cat] = sort_files_by_content(ret[cat])
+
     return ret
 
         
