@@ -96,7 +96,7 @@ def list_temp_sensors():
         if category is not None:
             ret[category] += temp_sensors
         for cat in ret:
-            ret[category] = sort_files_by_content(ret[category])
+            ret[cat] = sort_files_by_content(ret[cat])
     return ret
 
         
