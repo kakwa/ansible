@@ -1,0 +1,6 @@
+- name: Gathering Sensors Facts
+  sensors_facts:
+
+#- name: Print Sensors Facts
+#  ansible.builtin.debug:
+#    var: ansible_facts.temp_sensors

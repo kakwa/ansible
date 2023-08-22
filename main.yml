@@ -4,4 +4,5 @@
   become: true
   connection: local 
   roles:
+    - sensors
     - sway

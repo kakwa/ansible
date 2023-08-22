@@ -53,8 +53,8 @@
     group: root
 
 - name: Install i3 status configuration
-  copy:
-    src: i3status.conf
+  ansible.builtin.template:
+    src: templates/i3status.conf
     dest: /etc/i3status.conf
     mode: 0644
     owner: root
