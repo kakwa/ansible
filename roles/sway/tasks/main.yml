@@ -3,6 +3,7 @@
   apt:
       name:
       - sway
+      - xwayland
       - kitty
       - alacritty
       - python3-i3ipc
