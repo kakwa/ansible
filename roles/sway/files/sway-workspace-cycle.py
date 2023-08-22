@@ -24,6 +24,8 @@ for output in filter(lambda o: o.active, outputs):
 
 for workspace in workspaces:
     workspace_index = workspace.num - screens[workspace.output]["index"] * NUM_WORKSPACE - 1
+    if workspace_index < 0 or workspace_index >= NUM_WORKSPACE:
+        workspace_index = 0
     screens[workspace.output]["workspaces"][workspace_index] = True
 
 #print(screens)
