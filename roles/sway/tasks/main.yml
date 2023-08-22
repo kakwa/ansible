@@ -27,6 +27,14 @@
     owner: root
     group: root
 
+- name: Install workspace init script
+  copy:
+    src: sway-workspace-init.py
+    dest: "/usr/local/bin/sway-workspace-init.py"
+    mode: 0755
+    owner: root
+    group: root
+
 - name: Install workspace switcher script
   copy:
     src: sway-workspace-cycle.py
