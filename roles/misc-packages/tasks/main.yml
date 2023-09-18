@@ -1,0 +1,25 @@
+---
+- name: Install Random packages
+  apt:
+      name:
+      - grimshot
+      - flameshot
+      - firefox
+      - libreoffice
+      - clang
+      - clang++
+      - cmake
+      - make
+      - cowbuilder
+      - nmap
+      - tcpdump
+      - rsync
+      - screen
+      - pavucontrol
+      - chromium
+      - git
+      - golang
+      - freecad
+      - cura
+      - zsh
+      - geeqie
