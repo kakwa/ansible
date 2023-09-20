@@ -1,0 +1,60 @@
+---
+- name: Install zsh (and accessories)
+  apt:
+      name:
+      - zsh
+
+- name: Ensure group "carpenti" exists with correct gid
+  ansible.builtin.group:
+    name: carpenti
+    state: present
+    gid: 1002
+
+
+- name: Add the user 'carpenti' with a specific uid and a primary group of 'admin'
+  ansible.builtin.user:
+    name: carpenti
+    comment: Kakwa alter ego
+    uid: 1002
+    group: carpenti
+    shell: /bin/zsh
+    home: /home/carpenti
+    create_home: true
+    groups:
+      - cdrom
+      - floppy
+      - audio
+      - dip
+      - video
+      - plugdev
+      - users
+      - render
+      - netdev
+      - docker
+
+- name: Ensure group "kakwa" exists with correct gid
+  ansible.builtin.group:
+    name: kakwa
+    state: present
+    gid: 1001
+
+- name: Add the user 'kakwa' with a specific uid and a primary group of 'admin'
+  ansible.builtin.user:
+    name: kakwa
+    comment: Kakwa
+    uid: 1001
+    group: kakwa
+    shell: /bin/zsh
+    home: /home/kakwa
+    create_home: true
+    groups:
+      - cdrom
+      - floppy
+      - audio
+      - dip
+      - video
+      - plugdev
+      - users
+      - render
+      - netdev
+      - docker

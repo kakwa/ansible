@@ -1,0 +1,26 @@
+---
+- name: Install zsh (and accessories)
+  apt:
+      name:
+      - zsh
+
+- name: Create Oh My Zsh folder
+  file:
+    path: /etc/zsh/oh-my-zsh/
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Copy oh my zsh to global location
+  synchronize:
+   src: "oh-my-zsh/"
+   dest: "/etc/zsh/oh-my-zsh/"
+   owner: false
+   group: false
+
+- name: Copy zshrc to global location
+  copy:
+   src: "zshrc"
+   dest: "/etc/zsh/zshrc"
+   mode: 0644

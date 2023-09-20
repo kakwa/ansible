@@ -4,5 +4,9 @@
   become: true
   connection: local 
   roles:
+    - users
     - sensors
     - sway
+    - misc-packages
+    - terminal
+    - zsh
