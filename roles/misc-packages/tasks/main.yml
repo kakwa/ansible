@@ -25,3 +25,6 @@
       - geeqie
       - docker.io
       - ansible
+      - pcmanfm-qt
+      - geeqie
+      - suckless-tools

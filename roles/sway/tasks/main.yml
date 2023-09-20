@@ -12,6 +12,7 @@
       - pipewire
       - pipewire-pulse
       - swayidle
+      - wdisplays
       - i3status
 
 - name: Install window switcher script
