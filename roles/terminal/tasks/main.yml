@@ -2,21 +2,21 @@
 - name: Install sway stuff
   apt:
       name:
-      - alacritty
+      - foot
       - fonts-dejavu
 
-- name: ensures /etc/xdg/alacritty/ dir exists
+- name: ensures /etc/xdg/foot/ dir exists
   file:
-    path: "/etc/xdg/alacritty/"
+    path: "/etc/xdg/foot/"
     mode: 0755
     owner: root
     group: root
     state: directory
 
-- name: Install alacritty configuration
+- name: Install foot configuration
   copy:
-    src: alacritty.yml
-    dest: /etc/xdg/alacritty/alacritty.yml
+    src: foot.ini
+    dest: /etc/xdg/foot/foot.ini
     mode: 0644
     owner: root
     group: root
