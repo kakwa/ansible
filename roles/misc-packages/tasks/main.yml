@@ -2,6 +2,7 @@
 - name: Install Random packages
   apt:
       name:
+      - docker.io
       - grimshot
       - flameshot
       - firefox
