@@ -3,6 +3,7 @@
   apt:
       name:
       - docker.io
+      - unattended-upgrades
       - grimshot
       - flameshot
       - firefox
