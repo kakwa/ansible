@@ -4,6 +4,7 @@
       name:
       - docker.io
       - unattended-upgrades
+      - android-file-transfer
       - grimshot
       - flameshot
       - firefox
@@ -12,6 +13,7 @@
       - clang-format
       - cmake
       - make
+      - mpv
       - cowbuilder
       - nmap
       - tcpdump
@@ -23,10 +25,9 @@
       - golang
       - freecad
       - prusa-slicer
+      - btop
       - zsh
       - geeqie
-      - docker.io
       - ansible
       - pcmanfm-qt
-      - geeqie
       - suckless-tools
