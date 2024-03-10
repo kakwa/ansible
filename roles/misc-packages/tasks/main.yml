@@ -22,7 +22,7 @@
       - git
       - golang
       - freecad
-      - cura
+      - prusa-slicer
       - zsh
       - geeqie
       - docker.io
