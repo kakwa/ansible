@@ -78,7 +78,7 @@ if sys.argv[1] == "prev":
         logger.debug(f"workspace empty")
         index = focused_workspace.num - screens[focused_output]["index"] * NUM_WORKSPACE - 1
         # if we don't have an active window, then just pick
-        next_workspace = 0
+        next_workspace = -1
         for i in range(0, index):
             rev_index = index - 1 - i
             if screens[focused_output]["workspaces"][rev_index]:
