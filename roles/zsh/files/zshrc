@@ -162,3 +162,5 @@ export PATH=${PATH}:${HOME}/go/bin:${PATH}:${HOME}/.cargo/bin
 alias tree="tree -C"
 
 alias gh="cd $HOME/Geek/GitHub"
+
+alias setswaykbmap="swaymsg input 'type:keyboard' xkb_layout"
