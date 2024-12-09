@@ -2373,7 +2373,7 @@ set print array off
 set print array-indexes on
 set python print-stack full
 
-source /etc/gdb/gdbinit.d/utf16print.py
+source /etc/gdb/gdbinit.d/myutils.py
 
 # Start ------------------------------------------------------------------------
 

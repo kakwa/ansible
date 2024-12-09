@@ -1,0 +1,25 @@
+---
+- name: Install zsh (and accessories)
+  apt:
+      name:
+      - gdb
+
+- name: Create gdbinit.d folder
+  file:
+    path: /etc/gdb/gdbinit.d/
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+
+- name: Copy gdbinit configuration file
+  copy:
+   src: "gdbinit"
+   dest: "/etc/gdb/gdbinit"
+   mode: 0644
+
+- name: Copy some random gdb python macros
+  copy:
+   src: "myutils.py"
+   dest: "/etc/gdb/gdbinit.d/myutils.py"
+   mode: 0644
