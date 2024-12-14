@@ -152,12 +152,13 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git debian)
 
-export EDITOR="vim"
 
 source $ZSH/oh-my-zsh.sh
 
+export EDITOR="vim"
+
 # Customize to your needs...
-export PATH=${PATH}:${HOME}/go/bin:${PATH}:${HOME}/.cargo/bin
+export PATH=${PATH}:${HOME}/go/bin:${PATH}:${HOME}/.cargo/bin:/sbin:/usr/sbin
 
 alias tree="tree -C"
 
