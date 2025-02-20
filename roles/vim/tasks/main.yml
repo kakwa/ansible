@@ -1,0 +1,21 @@
+---
+- name: Install vim
+  apt:
+      name:
+      - vim
+
+- name: ensures /etc/vim/ exists
+  file:
+    path: "/etc/vim"
+    mode: 0755
+    owner: root
+    group: root
+    state: directory
+
+- name: Install vim configuration
+  copy:
+    src: vimrc
+    dest: /etc/vim/vimrc
+    mode: 0644
+    owner: root
+    group: root
