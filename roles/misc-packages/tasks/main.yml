@@ -21,7 +21,6 @@
       - screen
       - pavucontrol
       - chromium
-      - git
       - golang
       - freecad
       - prusa-slicer

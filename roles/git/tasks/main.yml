@@ -1,0 +1,13 @@
+---
+- name: Install git
+  apt:
+      name:
+      - git
+
+- name: Install git configuration
+  copy:
+    src: gitconfig
+    dest: /etc/gitconfig
+    mode: 0644
+    owner: root
+    group: root
