@@ -5,6 +5,7 @@
   connection: local 
   roles:
     - misc-packages
+    - git
     - users
     - sensors
     - sway
