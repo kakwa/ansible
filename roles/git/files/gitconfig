@@ -1,4 +1,4 @@
-# clearly makes git better
+## clearly makes git better
 # https://blog.gitbutler.com/how-git-core-devs-configure-git/
 
 [column]
@@ -46,6 +46,11 @@
         # untrackedCache = true
 [merge]
         # (just 'diff3' if git version < 2.3)
-        # conflictstyle = zdiff3 
+        conflictstyle = zdiff3
 [pull]
-        # rebase = true
+        rebase = true
+
+## additional stuff
+
+[alias]
+  glog = log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
