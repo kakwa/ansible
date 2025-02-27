@@ -4,10 +4,18 @@
       name:
       - git
 
-- name: Install git configuration
+- name: Install global git configuration
   copy:
     src: gitconfig
     dest: /etc/gitconfig
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Install global gitignore configuration
+  copy:
+    src: gitignore
+    dest: /etc/gitignore
     mode: 0644
     owner: root
     group: root
