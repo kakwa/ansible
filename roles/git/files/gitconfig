@@ -33,7 +33,7 @@
         enabled = true
         autoupdate = true
 [core]
-        excludesfile = ~/.gitignore
+        excludesfile = /etc/gitignore
 [rebase]
         autoSquash = true
         autoStash = true
