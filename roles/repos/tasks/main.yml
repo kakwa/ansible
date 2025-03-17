@@ -6,41 +6,54 @@
         repo_url: https://kakwa.github.io/slack-discord-misc-pkg/deb.stable.amd64/
         arch: amd64
         suite: stable
+        component: main
 
       - name: kakwalab-pkg
         gpg_key: https://kakwa.github.io/kakwalab-pkg/GPG-KEY.pub
-        repo_url: https://kakwa.github.io/kakwalab-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.{{ ansible_architecture }}/
-        arch: "{{ ansible_architecture }}"
+        repo_url: https://kakwa.github.io/kakwalab-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.amd64/
+        arch: amd64
         suite: "{{ ansible_facts['lsb']['codename'] }}"
+        component: main
 
       - name: misc-pkg
         gpg_key: https://kakwa.github.io/misc-pkg/GPG-KEY.pub
-        repo_url: https://kakwa.github.io/misc-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.{{ ansible_architecture }}/
-        arch: "{{ ansible_architecture }}"
+        repo_url: https://kakwa.github.io/misc-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.amd64/
+        arch: amd64
         suite: "{{ ansible_facts['lsb']['codename'] }}"
+        component: main
 
       - name: debian-rpm-build-tools
         gpg_key: https://kakwa.github.io/debian-rpm-build-tools/GPG-KEY.pub
-        repo_url: https://kakwa.github.io/debian-rpm-build-tools/deb.{{ ansible_facts['lsb']['codename'] }}.{{ ansible_architecture }}/
-        arch: "{{ ansible_architecture }}"
+        repo_url: https://kakwa.github.io/debian-rpm-build-tools/deb.{{ ansible_facts['lsb']['codename'] }}.amd64/
+        arch: amd64
         suite: "{{ ansible_facts['lsb']['codename'] }}"
+        component: main
 
-     - name: opentofu
-        gpg_key: https://get.opentofu.org/opentofu.gpg
+      - name: opentofu
+        gpg_key: https://packages.opentofu.org/opentofu/tofu/gpgkey
         repo_url: https://packages.opentofu.org/opentofu/tofu/any/
-        arch: "{{ ansible_architecture }}"
+        arch: amd64
         suite: "any"
+        component: main
 
-- name: Add GPG keys
-  ansible.builtin.get_url:
-    url: "{{ item.gpg_key }}"
-    dest: "/etc/apt/trusted.gpg.d/{{ item.name }}.gpg"
-    mode: '0644'
+      - name: spotify
+        gpg_key: https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg
+        repo_url: https://repository.spotify.com
+        arch: amd64
+        suite: "stable"
+        component: non-free
+
+- name: Download and convert GPG keys if not exists
+  ansible.builtin.shell: >
+    wget -qO - {{ item.gpg_key }} | gpg --no-tty --batch --dearmor -o /etc/apt/trusted.gpg.d/{{ item.name }}.gpg
+  args:
+    creates: "/etc/apt/trusted.gpg.d/{{ item.name }}.gpg"
   loop: "{{ repositories }}"
 
 - name: Add repositories
   ansible.builtin.apt_repository:
-    repo: "deb [arch={{ item.arch }}] {{ item.repo_url }} {{ item.suite }} main"
+    repo: "deb [arch={{ item.arch }}] {{ item.repo_url }} {{ item.suite }} {{ item.component }}"
     filename: "{{ item.name }}"
     state: present
+    update_cache: false
   loop: "{{ repositories }}"
