@@ -1,0 +1,46 @@
+- name: Define repository list
+  ansible.builtin.set_fact:
+    repositories:
+      - name: slack-discord-misc-pkg
+        gpg_key: https://kakwa.github.io/slack-discord-misc-pkg/GPG-KEY.pub
+        repo_url: https://kakwa.github.io/slack-discord-misc-pkg/deb.stable.amd64/
+        arch: amd64
+        suite: stable
+
+      - name: kakwalab-pkg
+        gpg_key: https://kakwa.github.io/kakwalab-pkg/GPG-KEY.pub
+        repo_url: https://kakwa.github.io/kakwalab-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.{{ ansible_architecture }}/
+        arch: "{{ ansible_architecture }}"
+        suite: "{{ ansible_facts['lsb']['codename'] }}"
+
+      - name: misc-pkg
+        gpg_key: https://kakwa.github.io/misc-pkg/GPG-KEY.pub
+        repo_url: https://kakwa.github.io/misc-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.{{ ansible_architecture }}/
+        arch: "{{ ansible_architecture }}"
+        suite: "{{ ansible_facts['lsb']['codename'] }}"
+
+      - name: debian-rpm-build-tools
+        gpg_key: https://kakwa.github.io/debian-rpm-build-tools/GPG-KEY.pub
+        repo_url: https://kakwa.github.io/debian-rpm-build-tools/deb.{{ ansible_facts['lsb']['codename'] }}.{{ ansible_architecture }}/
+        arch: "{{ ansible_architecture }}"
+        suite: "{{ ansible_facts['lsb']['codename'] }}"
+
+     - name: opentofu
+        gpg_key: https://get.opentofu.org/opentofu.gpg
+        repo_url: https://packages.opentofu.org/opentofu/tofu/any/
+        arch: "{{ ansible_architecture }}"
+        suite: "any"
+
+- name: Add GPG keys
+  ansible.builtin.get_url:
+    url: "{{ item.gpg_key }}"
+    dest: "/etc/apt/trusted.gpg.d/{{ item.name }}.gpg"
+    mode: '0644'
+  loop: "{{ repositories }}"
+
+- name: Add repositories
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ item.arch }}] {{ item.repo_url }} {{ item.suite }} main"
+    filename: "{{ item.name }}"
+    state: present
+  loop: "{{ repositories }}"
