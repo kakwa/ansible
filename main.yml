@@ -4,6 +4,7 @@
   become: true
   connection: local 
   roles:
+    - repos
     - misc-packages
     - git
     - users
