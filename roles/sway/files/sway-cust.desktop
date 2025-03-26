@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Sway+Session
+Comment=An i3-compatible Wayland compositor (with dbus session)
+Exec=env XDG_SESSION_TYPE=wayland XDG_CURRENT_DESKTOP=sway dbus-run-session sway
+Type=Application

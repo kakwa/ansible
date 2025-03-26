@@ -7,13 +7,23 @@
       - python3-i3ipc
       - swaylock
       - xdg-desktop-portal-wlr
-      - debian-edu-artwork-emerald
       - suckless-tools
       - pipewire
       - pipewire-pulse
       - swayidle
       - wdisplays
       - i3status
+      - seatd
+      - libseat1
+      - wlgreet
+
+- name: Install Wallpaper
+  copy:
+    src: kwp.jpg
+    dest: "/usr/share/backgrounds/kwp.jpg"
+    mode: 0644
+    owner: root
+    group: root
 
 - name: Install window switcher script
   copy:
@@ -43,6 +53,14 @@
   copy:
     src: config
     dest: /etc/sway/config
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Desktop Configuration
+  copy:
+    src: sway-cust.desktop
+    dest: /usr/share/wayland-sessions/sway-cust.desktop
     mode: 0644
     owner: root
     group: root
