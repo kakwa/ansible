@@ -22,7 +22,7 @@
       - pavucontrol
       - chromium
       - golang
-      - freecad
+      - astocad
       - prusa-slicer
       - btop
       - zsh
