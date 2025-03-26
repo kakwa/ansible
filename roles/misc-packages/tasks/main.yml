@@ -14,7 +14,10 @@
       - cmake
       - make
       - mpv
+      - inkscape
+      - gimp
       - cowbuilder
+      - mock
       - nmap
       - tcpdump
       - rsync
