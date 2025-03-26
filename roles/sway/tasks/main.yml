@@ -13,9 +13,7 @@
       - swayidle
       - wdisplays
       - i3status
-      - seatd
-      - libseat1
-      - wlgreet
+      - gdm3
 
 - name: Install Wallpaper
   copy:
