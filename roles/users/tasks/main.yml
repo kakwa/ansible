@@ -14,7 +14,7 @@
 - name: Add the user 'carpenti' with a specific uid and a primary group of 'admin'
   ansible.builtin.user:
     name: carpenti
-    comment: Kakwa's alter ego
+    comment: Carpenti
     uid: 1002
     group: carpenti
     shell: /bin/zsh
