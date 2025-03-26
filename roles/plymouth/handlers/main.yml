@@ -1,0 +1,4 @@
+- name: Update GRUB
+  command: update-grub
+- name: Rebuild initramfs
+  command: update-initramfs -u
