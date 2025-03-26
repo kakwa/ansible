@@ -29,3 +29,4 @@
       - geeqie
       - ansible
       - suckless-tools
+      - plymouth
