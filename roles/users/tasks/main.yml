@@ -3,6 +3,7 @@
   apt:
       name:
       - zsh
+      - sudo
 
 - name: Ensure group "carpenti" exists with correct gid
   ansible.builtin.group:
@@ -31,6 +32,7 @@
       - render
       - netdev
       - docker
+      - sudo
 
 - name: Ensure group "kakwa" exists with correct gid
   ansible.builtin.group:
@@ -58,3 +60,4 @@
       - render
       - netdev
       - docker
+      - sudo
