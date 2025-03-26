@@ -8,6 +8,7 @@
     - misc-packages
     - git
     - users
+    - plymouth
     - sensors
     - sway
     - terminal
