@@ -55,6 +55,22 @@
     owner: root
     group: root
 
+- name: ensures /etc/sway/config.d dir exists
+  file:
+    path: "/etc/sway/config.d"
+    mode: 0755
+    owner: root
+    group: root
+    state: directory
+
+- name: Install Sway Wallpaper configuration
+  copy:
+    src: 40-sway-background.conf
+    dest: /etc/sway/config.d/40-sway-background.conf
+    mode: 0644
+    owner: root
+    group: root
+
 - name: Desktop Configuration
   copy:
     src: sway-cust.desktop
