@@ -1,0 +1,17 @@
+- name: Install Plymouth and themes
+  apt:
+    name:
+      - plymouth
+      - plymouth-themes
+    state: present
+    update_cache: yes
+
+- name: Ensure the GRUB configuration includes splash
+  lineinfile:
+    path: /etc/default/grub
+    regexp: '^GRUB_CMDLINE_LINUX_DEFAULT='
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash plymouth"'
+    backrefs: yes
+  notify:
+    - Update GRUB
+    - Rebuild initramfs
