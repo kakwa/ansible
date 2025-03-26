@@ -30,3 +30,4 @@
       - ansible
       - suckless-tools
       - plymouth
+      - plymouth-themes
