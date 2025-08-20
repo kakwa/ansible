@@ -37,3 +37,4 @@
       - slack-desktop
       - plymouth-themes
       - scc
+      - v4l-utils
