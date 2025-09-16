@@ -1,0 +1,44 @@
+---
+# Default zsh paths for different OS families
+zsh:
+  Debian:
+    zsh_path: /bin/zsh
+  NetBSD:
+    zsh_path: /usr/pkg/bin/zsh
+
+# Default group lists for different OS families
+user_groups:
+  Debian:
+    carpenti:
+      - cdrom
+      - floppy
+      - audio
+      - dip
+      - video
+      - plugdev
+      - users
+      - render
+      - netdev
+      - docker
+      - sudo
+    kakwa:
+      - cdrom
+      - floppy
+      - audio
+      - dip
+      - video
+      - plugdev
+      - users
+      - render
+      - netdev
+      - docker
+      - sudo
+  NetBSD:
+    carpenti:
+      - staff
+      - users
+      - wheel
+    kakwa:
+      - staff
+      - users
+      - wheel
