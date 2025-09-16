@@ -1,8 +1,17 @@
 ---
-- name: Install zsh (and accessories)
-  apt:
+- name: Install zsh with pkgin
+  community.general.pkgin:
       name:
       - zsh
+      - rsync
+  when: ansible_os_family == "NetBSD"
+
+- name: Install zsh with apt
+  ansible.builtin.apt:
+      name:
+      - zsh
+      - rsync
+  when: ansible_os_family == "Debian"
 
 - name: Create Oh My Zsh folder
   file:
@@ -10,7 +19,7 @@
     state: directory
     mode: 0755
     owner: root
-    group: root
+    group: "{{ root_group[ansible_os_family] }}"
 
 - name: Copy oh my zsh to global location
   synchronize:
@@ -24,3 +33,14 @@
    src: "zshrc"
    dest: "/etc/zsh/zshrc"
    mode: 0644
+   owner: root
+   group: "{{ root_group[ansible_os_family] }}"
+
+- name: Create /etc/zshrc for NetBSD
+  copy:
+    content: "source /etc/zsh/zshrc\n"
+    dest: "/usr/pkg/etc/zshrc"
+    mode: 0644
+    owner: root
+    group: "{{ root_group[ansible_os_family] }}"
+  when: ansible_os_family == "NetBSD"
