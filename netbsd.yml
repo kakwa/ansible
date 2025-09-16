@@ -3,6 +3,7 @@
   remote_user: root
   hosts: all
   roles:
+    - os-release
     - users
     - vim
-#   - zsh
+    - zsh
