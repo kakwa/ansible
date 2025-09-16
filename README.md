@@ -6,5 +6,5 @@ My Ansible configuration
 
 ```shell
 # as root
-ansible-playbook main.yml
+ansible-playbook desktop.yml
 ```
