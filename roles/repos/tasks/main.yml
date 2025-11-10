@@ -28,15 +28,15 @@
     architectures: amd64
     signed_by: https://kakwa.github.io/misc-pkg/GPG-KEY.pub
 
-#- name: Add freecad-pkg repository
-#  ansible.builtin.deb822_repository:
-#    name: freecad-pkg
-#    types: deb
-#    uris: https://kakwa.github.io/freecad-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.amd64/
-#    suites: "{{ ansible_facts['lsb']['codename'] }}"
-#    components: main
-#    architectures: amd64
-#    signed_by: https://kakwa.github.io/freecad-pkg/GPG-KEY.pub
+- name: Add freecad-pkg repository
+  ansible.builtin.deb822_repository:
+    name: freecad-pkg
+    types: deb
+    uris: https://kakwa.github.io/freecad-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.amd64/
+    suites: "{{ ansible_facts['lsb']['codename'] }}"
+    components: main
+    architectures: amd64
+    signed_by: https://kakwa.github.io/freecad-pkg/GPG-KEY.pub
 
 - name: Add debian-rpm-build-tools repository
   ansible.builtin.deb822_repository:
