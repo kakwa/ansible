@@ -21,5 +21,16 @@
       - v4l-utils
       - astocad
       - prusa-slicer
+      - clang
+      - clang-format
+      - cmake
+      - make
+      - golang
+      - btop
+      - ansible
+      - scc
+      - docker.io
+      - cowbuilder
+      - mock
     state: present
 

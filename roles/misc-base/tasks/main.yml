@@ -3,20 +3,11 @@
   apt:
     name:
       - unattended-upgrades
-      - clang
-      - clang-format
-      - cmake
-      - make
       - rsync
       - screen
-      - golang
-      - btop
+      - tmux
+      - tree
       - zsh
-      - ansible
-      - scc
-      - docker.io
-      - cowbuilder
-      - mock
       - nmap
       - tcpdump
     state: present
