@@ -1,0 +1,23 @@
+---
+- name: Install base packages
+  apt:
+    name:
+      - unattended-upgrades
+      - clang
+      - clang-format
+      - cmake
+      - make
+      - rsync
+      - screen
+      - golang
+      - btop
+      - zsh
+      - ansible
+      - scc
+      - docker.io
+      - cowbuilder
+      - mock
+      - nmap
+      - tcpdump
+    state: present
+

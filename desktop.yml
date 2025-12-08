@@ -5,7 +5,8 @@
   connection: local 
   roles:
     - repos
-    - misc-packages
+    - misc-base
+    - misc-desktop
     - git
     - users
     - plymouth

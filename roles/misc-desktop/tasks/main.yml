@@ -1,0 +1,25 @@
+---
+- name: Install desktop packages
+  apt:
+    name:
+      - android-file-transfer
+      - grimshot
+      - flameshot
+      - firefox
+      - libreoffice
+      - mpv
+      - inkscape
+      - gimp
+      - pavucontrol
+      - geeqie
+      - suckless-tools
+      - spotify-client
+      - discord
+      - slack-desktop
+      - plymouth
+      - plymouth-themes
+      - v4l-utils
+      - astocad
+      - prusa-slicer
+    state: present
+
