@@ -8,6 +8,7 @@
       - tmux
       - tree
       - zsh
+      - fwupd
       - nmap
       - tcpdump
       - ntpsec
