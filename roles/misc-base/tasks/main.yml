@@ -4,6 +4,8 @@
     name:
       - unattended-upgrades
       - rsync
+      - btop
+      - psmisc
       - screen
       - tmux
       - tree
