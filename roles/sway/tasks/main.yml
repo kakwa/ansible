@@ -13,7 +13,59 @@
       - swayidle
       - wdisplays
       - i3status
+      - greetd
+      - gtkgreet
+      - swaybg
+      - swayidle
+      - swaylock
+      - dbus-user-session
+    state: present
+    update_cache: yes
+
+- name: Remove GDM if present
+  apt:
+    name:
       - gdm3
+      - gnome-shell
+      - gnome-session
+    state: absent
+    purge: yes
+  ignore_errors: true
+
+- name: Ensure greetd config directory exists
+  file:
+    path: /etc/greetd
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Configure greetd for Sway using gtkgreet
+  copy:
+    dest: /etc/greetd/config.toml
+    owner: root
+    group: root
+    mode: "0644"
+    content: |
+      [terminal]
+      vt = 1
+
+      [default_session]
+      command = "gtkgreet -l -c sway"
+      user = "greetd"
+
+- name: Enable greetd service
+  systemd:
+    name: greetd
+    enabled: yes
+    state: started
+
+- name: Disable GDM service if present
+  systemd:
+    name: gdm3
+    enabled: no
+    state: stopped
+  ignore_errors: true
 
 - name: Install Wallpaper
   copy:
