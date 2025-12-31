@@ -4,7 +4,7 @@
       name:
       - zsh
       - sudo
-  when: ansible_os_family == "NetBSD"
+  when: ansible_facts["os_family"] == "NetBSD"
 
 - name: Install zsh (and accessories) with apt
   ansible.builtin.apt:
@@ -12,7 +12,7 @@
       - zsh
       - sudo
       state: present
-  when: ansible_os_family == "Debian"
+  when: ansible_facts["os_family"] == "Debian"
 
 - name: Ensure group "carpenti" exists with correct gid
   ansible.builtin.group:
@@ -27,10 +27,10 @@
     comment: Carpenti
     uid: 1002
     group: carpenti
-    shell: "{{ zsh[ansible_os_family]['zsh_path'] }}"
+    shell: "{{ zsh[ansible_facts['os_family']]['zsh_path'] }}"
     home: /home/carpenti
     create_home: true
-    groups: "{{ carpenti_groups | default(user_groups[ansible_os_family]['carpenti'] | default([])) }}"
+    groups: "{{ carpenti_groups | default(user_groups[ansible_facts['os_family']]['carpenti'] | default([])) }}"
 
 - name: Ensure group "kakwa" exists with correct gid
   ansible.builtin.group:
@@ -44,7 +44,7 @@
     comment: Kakwa
     uid: 1001
     group: kakwa
-    shell: "{{ zsh[ansible_os_family]['zsh_path'] }}"
+    shell: "{{ zsh[ansible_facts['os_family']]['zsh_path'] }}"
     home: /home/kakwa
     create_home: true
-    groups: "{{ kakwa_groups | default(user_groups[ansible_os_family]['kakwa'] | default([])) }}"
+    groups: "{{ kakwa_groups | default(user_groups[ansible_facts['os_family']]['kakwa'] | default([])) }}"

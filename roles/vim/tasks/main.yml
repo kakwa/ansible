@@ -2,20 +2,20 @@
   community.general.pkgin:
       name:
       - vim
-  when: ansible_os_family == "NetBSD"
+  when: ansible_facts["os_family"] == "NetBSD"
 
 - name: Install vim with apt
   ansible.builtin.apt:
       name:
       - vim
-  when: ansible_os_family == "Debian"
+  when: ansible_facts["os_family"] == "Debian"
 
 - name: ensures /etc/vim/ exists
   file:
     path: "/etc/vim"
     mode: 0755
     owner: root
-    group: "{{ root_group[ansible_os_family] }}"
+    group: "{{ root_group[ansible_facts['os_family']] }}"
     state: directory
 
 - name: Install vim configuration
@@ -24,4 +24,4 @@
     dest: /etc/vim/vimrc
     mode: 0644
     owner: root
-    group: "{{ root_group[ansible_os_family] }}"
+    group: "{{ root_group[ansible_facts['os_family']] }}"
