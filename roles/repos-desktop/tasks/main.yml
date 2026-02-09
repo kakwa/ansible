@@ -1,0 +1,19 @@
+- name: Add freecad-pkg repository
+  ansible.builtin.deb822_repository:
+    name: freecad-pkg
+    types: deb
+    uris: https://kakwa.github.io/freecad-pkg/deb.{{ ansible_facts['lsb']['codename'] }}.amd64/
+    suites: "{{ ansible_facts['lsb']['codename'] }}"
+    components: main
+    architectures: amd64
+    signed_by: https://kakwa.github.io/freecad-pkg/GPG-KEY.pub
+
+- name: Add spotify repository
+  ansible.builtin.deb822_repository:
+    name: spotify
+    types: deb
+    uris: https://repository.spotify.com
+    suites: "stable"
+    components: non-free
+    architectures: amd64
+    signed_by: https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg

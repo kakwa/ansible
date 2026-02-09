@@ -5,6 +5,7 @@
   connection: local 
   roles:
     - repos
+    - repos-desktop
     - misc-base
     - misc-desktop
     - git
