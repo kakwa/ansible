@@ -4,14 +4,14 @@
       name:
       - zsh
       - rsync
-  when: ansible_facts["os_family"] == "NetBSD"
+  when: ansible_facts.os_family == "NetBSD"
 
 - name: Install zsh with apt
   ansible.builtin.apt:
       name:
       - zsh
       - rsync
-  when: ansible_facts["os_family"] == "Debian"
+  when: ansible_facts.os_family == "Debian"
 
 - name: Create Oh My Zsh folder
   file:
@@ -19,7 +19,7 @@
     state: directory
     mode: 0755
     owner: root
-    group: "{{ root_group[ansible_facts['os_family']] }}"
+    group: "{{ root_group[ansible_facts.os_family] }}"
 
 - name: Copy oh my zsh to global location
   synchronize:
@@ -35,7 +35,7 @@
     state: directory
     mode: 0755
     owner: root
-    group: "{{ root_group[ansible_facts['os_family']] }}"
+    group: "{{ root_group[ansible_facts.os_family] }}"
 
 - name: Copy zshrc to global location
   copy:
@@ -43,7 +43,7 @@
    dest: "/etc/zsh/zshrc"
    mode: 0644
    owner: root
-   group: "{{ root_group[ansible_facts['os_family']] }}"
+   group: "{{ root_group[ansible_facts.os_family] }}"
 
 - name: Create /etc/zshrc for NetBSD
   copy:
@@ -51,5 +51,5 @@
     dest: "/usr/pkg/etc/zshrc"
     mode: 0644
     owner: root
-    group: "{{ root_group[ansible_facts['os_family']] }}"
-  when: ansible_facts["os_family"] == "NetBSD"
+    group: "{{ root_group[ansible_facts.os_family] }}"
+  when: ansible_facts.os_family == "NetBSD"
