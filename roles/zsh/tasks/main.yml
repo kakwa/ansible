@@ -13,6 +13,14 @@
       - rsync
   when: ansible_facts.os_family == "Debian"
 
+- name: Install zsh with openbsd_pkg (rsync full flavor, not minimal)
+  community.general.openbsd_pkg:
+    name:
+      - zsh
+      - rsync-3.4.1
+    state: present
+  when: ansible_facts.os_family == "OpenBSD"
+
 - name: Create Oh My Zsh folder
   file:
     path: /etc/zsh/oh-my-zsh/
@@ -23,11 +31,12 @@
 
 - name: Copy oh my zsh to global location
   synchronize:
-   src: "oh-my-zsh/"
-   dest: "/etc/zsh/oh-my-zsh/"
-   owner: false
-   group: false
-   perms: false
+    src: "oh-my-zsh/"
+    dest: "/etc/zsh/oh-my-zsh/"
+    owner: false
+    group: false
+    perms: false
+    rsync_path: "{{ 'doas rsync' if ansible_facts.os_family == 'OpenBSD' else 'sudo rsync' }}"
 
 - name: Force Permissions on Oh My Zsh folder
   file:
@@ -53,3 +62,12 @@
     owner: root
     group: "{{ root_group[ansible_facts.os_family] }}"
   when: ansible_facts.os_family == "NetBSD"
+
+- name: Create /etc/zshrc for OpenBSD
+  copy:
+    content: "source /etc/zsh/zshrc\n"
+    dest: "/etc/zshrc"
+    mode: 0644
+    owner: root
+    group: "{{ root_group[ansible_facts.os_family] }}"
+  when: ansible_facts.os_family == "OpenBSD"

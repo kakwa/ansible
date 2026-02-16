@@ -2,3 +2,4 @@
 root_group:
   Debian: root
   NetBSD: wheel
+  OpenBSD: wheel
