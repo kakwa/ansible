@@ -160,7 +160,7 @@ export EDITOR="vim"
 # Customize to your needs...
 export PATH=${PATH}:${HOME}/go/bin:${PATH}:${HOME}/.cargo/bin:${HOME}/.local/bin:/sbin:/usr/sbin
 
-alias tree="tree -C"
+[[ "$(uname -s)" != "OpenBSD" ]] && alias tree="tree -C"
 
 alias gh="cd $HOME/Geek/GitHub"
 alias gu="cd $HOME/Geek/Upstream"
