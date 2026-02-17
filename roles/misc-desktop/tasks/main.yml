@@ -19,7 +19,6 @@
       - plymouth
       - plymouth-themes
       - v4l-utils
-      - astocad
       - prusa-slicer
       - clang
       - clang-format
@@ -33,4 +32,10 @@
       - cowbuilder
       - mock
     state: present
+    update_cache: true
+- name: Install Astocad if possible
+  apt:
+    name: astocad
+    state: present
+  ignore_errors: yes
 

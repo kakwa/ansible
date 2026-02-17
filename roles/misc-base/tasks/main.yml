@@ -15,4 +15,4 @@
       - tcpdump
       - ntpsec
     state: present
-
+    update_cache: yes
