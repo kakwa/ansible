@@ -41,8 +41,8 @@ plugins=(... git)
 | `gba`                  | `git branch --all`                                                                                                              |
 | `gbd`                  | `git branch --delete`                                                                                                           |
 | `gbD`                  | `git branch --delete --force`                                                                                                   |
-| `gbgd`                 | `LANG=C git branch --no-color -vv \| grep ": gone\]" \| awk '"'"'{print $1}'"'"' \| xargs git branch -d`                        |
-| `gbgD`                 | `LANG=C git branch --no-color -vv \| grep ": gone\]" \| awk '"'"'{print $1}'"'"' \| xargs git branch -D`                        |
+| `gbgd`                 | `LANG=C git branch --no-color -vv \| grep ": gone\]" \| cut -c 3- \| awk '"'"'{print $1}'"'"' \| xargs git branch -d`           |
+| `gbgD`                 | `LANG=C git branch --no-color -vv \| grep ": gone\]" \| cut -c 3- \| awk '"'"'{print $1}'"'"' \| xargs git branch -D`           |
 | `gbm`                  | `git branch --move`                                                                                                             |
 | `gbnm`                 | `git branch --no-merged`                                                                                                        |
 | `gbr`                  | `git branch --remote`                                                                                                           |
@@ -51,6 +51,7 @@ plugins=(... git)
 | `gco`                  | `git checkout`                                                                                                                  |
 | `gcor`                 | `git checkout --recurse-submodules`                                                                                             |
 | `gcb`                  | `git checkout -b`                                                                                                               |
+| `gcB`                  | `git checkout -B`                                                                                                               |
 | `gcd`                  | `git checkout $(git_develop_branch)`                                                                                            |
 | `gcm`                  | `git checkout $(git_main_branch)`                                                                                               |
 | `gcp`                  | `git cherry-pick`                                                                                                               |
@@ -58,6 +59,7 @@ plugins=(... git)
 | `gcpc`                 | `git cherry-pick --continue`                                                                                                    |
 | `gclean`               | `git clean --interactive -d`                                                                                                    |
 | `gcl`                  | `git clone --recurse-submodules`                                                                                                |
+| `gclf`                 | `git clone --recursive --shallow-submodules --filter=blob:none --also-filter-submodules`                                        |
 | `gccd`                 | `git clone --recurse-submodules "$@" && cd "$(basename $\_ .git)"`                                                              |
 | `gcam`                 | `git commit --all --message`                                                                                                    |
 | `gcas`                 | `git commit --all --signoff`                                                                                                    |
@@ -69,12 +71,15 @@ plugins=(... git)
 | `gca!`                 | `git commit --verbose --all --amend`                                                                                            |
 | `gcan!`                | `git commit --verbose --all --no-edit --amend`                                                                                  |
 | `gcans!`               | `git commit --verbose --all --signoff --no-edit --amend`                                                                        |
+| `gcann!`               | `git commit --verbose --all --date=now --no-edit --amend`                                                                       |
 | `gc!`                  | `git commit --verbose --amend`                                                                                                  |
+| `gcn`                  | `git commit --verbose --no-edit`                                                                                                |
 | `gcn!`                 | `git commit --verbose --no-edit --amend`                                                                                        |
 | `gcs`                  | `git commit -S`                                                                                                                 |
 | `gcss`                 | `git commit -S -s`                                                                                                              |
 | `gcssm`                | `git commit -S -s -m`                                                                                                           |
 | `gcf`                  | `git config --list`                                                                                                             |
+| `gcfu`                 | `git commit --fixup`                                                                                                            |
 | `gdct`                 | `git describe --tags $(git rev-list --tags --max-count=1)`                                                                      |
 | `gd`                   | `git diff`                                                                                                                      |
 | `gdca`                 | `git diff --cached`                                                                                                             |
@@ -86,7 +91,7 @@ plugins=(... git)
 | `gdnolock`             | `git diff $@ ":(exclude)package-lock.json" ":(exclude)\*.lock"`                                                                 |
 | `gdt`                  | `git diff-tree --no-commit-id --name-only -r`                                                                                   |
 | `gf`                   | `git fetch`                                                                                                                     |
-| `gfa`                  | `git fetch --all --prune`                                                                                                       |
+| `gfa`                  | `git fetch --all --tags --prune`                                                                                                |
 | `gfo`                  | `git fetch origin`                                                                                                              |
 | `gg`                   | `git gui citool`                                                                                                                |
 | `gga`                  | `git gui citool --amend`                                                                                                        |
@@ -109,7 +114,9 @@ plugins=(... git)
 | `gfg`                  | `git ls-files \| grep`                                                                                                          |
 | `gm`                   | `git merge`                                                                                                                     |
 | `gma`                  | `git merge --abort`                                                                                                             |
+| `gmc`                  | `git merge --continue`                                                                                                          |
 | `gms`                  | `git merge --squash`                                                                                                            |
+| `gmff`                 | `git merge --ff-only`                                                                                                           |
 | `gmom`                 | `git merge origin/$(git_main_branch)`                                                                                           |
 | `gmum`                 | `git merge upstream/$(git_main_branch)`                                                                                         |
 | `gmtl`                 | `git mergetool --no-prompt`                                                                                                     |
@@ -121,6 +128,8 @@ plugins=(... git)
 | `gprav`                | `git pull --rebase --autostash -v`                                                                                              |
 | `gprom`                | `git pull --rebase origin $(git_main_branch)`                                                                                   |
 | `gpromi`               | `git pull --rebase=interactive origin $(git_main_branch)`                                                                       |
+| `gprum`                | `git pull --rebase upstream $(git_main_branch)`                                                                                 |
+| `gprumi`               | `git pull --rebase=interactive upstream $(git_main_branch)`                                                                     |
 | `ggpull`               | `git pull origin "$(git_current_branch)"`                                                                                       |
 | `ggl`                  | `git pull origin $(current_branch)`                                                                                             |
 | `gluc`                 | `git pull upstream $(git_current_branch)`                                                                                       |
@@ -150,6 +159,8 @@ plugins=(... git)
 | `grbd`                 | `git rebase $(git_develop_branch)`                                                                                              |
 | `grbm`                 | `git rebase $(git_main_branch)`                                                                                                 |
 | `grbom`                | `git rebase origin/$(git_main_branch)`                                                                                          |
+| `grbum`                | `git rebase upstream/$(git_main_branch)`                                                                                        |
+| `grf`                  | `git reflog`                                                                                                                    |
 | `gr`                   | `git remote`                                                                                                                    |
 | `grv`                  | `git remote --verbose`                                                                                                          |
 | `gra`                  | `git remote add`                                                                                                                |
@@ -162,7 +173,8 @@ plugins=(... git)
 | `grhh`                 | `git reset --hard`                                                                                                              |
 | `grhk`                 | `git reset --keep`                                                                                                              |
 | `grhs`                 | `git reset --soft`                                                                                                              |
-| `gpristine`            | `git reset --hard && git clean -dffx`                                                                                           |
+| `gpristine`            | `git reset --hard && git clean --force -dfx`                                                                                    |
+| `gwipe`                | `git reset --hard && git clean --force -df`                                                                                     |
 | `groh`                 | `git reset origin/$(git_current_branch) --hard`                                                                                 |
 | `grs`                  | `git restore`                                                                                                                   |
 | `grss`                 | `git restore --source`                                                                                                          |
@@ -201,7 +213,7 @@ plugins=(... git)
 | `gtv`                  | `git tag \| sort -V`                                                                                                            |
 | `gignore`              | `git update-index --assume-unchanged`                                                                                           |
 | `gunignore`            | `git update-index --no-assume-unchanged`                                                                                        |
-| `gwch`                 | `git whatchanged -p --abbrev-commit --pretty=medium`                                                                            |
+| `gwch`                 | `git log --patch --abbrev-commit --pretty=medium --raw`                                                                         |
 | `gwt`                  | `git worktree`                                                                                                                  |
 | `gwtls`                | `git worktree list`                                                                                                             |
 | `gwtmv`                | `git worktree move`                                                                                                             |
@@ -222,40 +234,26 @@ branch exists. We do this via the function `git_main_branch`.
 These are aliases that have been removed, renamed, or otherwise modified in a way that may, or may not,
 receive further support.
 
-| Alias    | Command                                                   | Modification                                              |
-| :------- | :-------------------------------------------------------- | :-------------------------------------------------------- |
-| `gap`    | `git add --patch`                                         | New alias: `gapa`.                                        |
-| `gcl`    | `git config --list`                                       | New alias: `gcf`.                                         |
-| `gdc`    | `git diff --cached`                                       | New alias: `gdca`.                                        |
-| `gdt`    | `git difftool`                                            | No replacement.                                           |
-| `ggpull` | `git pull origin $(current_branch)`                       | New alias: `ggl`. (`ggpull` still exists for now though.) |
-| `ggpur`  | `git pull --rebase origin $(current_branch)`              | New alias: `ggu`. (`ggpur` still exists for now though.)  |
-| `ggpush` | `git push origin $(current_branch)`                       | New alias: `ggp`. (`ggpush` still exists for now though.) |
-| `gk`     | `gitk --all --branches`                                   | Now aliased to `gitk --all --branches`.                   |
-| `glg`    | `git log --stat --max-count=10`                           | Now aliased to `git log --stat --color`.                  |
-| `glgg`   | `git log --graph --max-count=10`                          | Now aliased to `git log --graph --color`.                 |
-| `gwc`    | `git whatchanged -p --abbrev-commit --pretty = medium`    | New alias: `gwch`.                                        |
-| `gup`    | `git pull --rebase`                                       | now alias `gpr`                                           |
-| `gupv`   | `git pull --rebase -v`                                    | now alias `gprv`                                          |
-| `gupa`   | `git pull --rebase --autostash`                           | now alias `gpra`                                          |
-| `gupav`  | `git pull --rebase --autostash -v`                        | now alias `gprav`                                         |
-| `gupom`  | `git pull --rebase origin $(git_main_branch)`             | now alias `gprom`                                         |
-| `gupomi` | `git pull --rebase=interactive origin $(git_main_branch)` | now alias `gpromi`                                        |
+| Alias    | Command                                                   | Modification                                          |
+| :------- | :-------------------------------------------------------- | :-----------------------------------------------------|
+| `gap`    | `git add --patch`                                         | New alias: `gapa`                                     |
+| `gcl`    | `git config --list`                                       | New alias: `gcf`                                      |
+| `gdt`    | `git difftool`                                            | No replacement                                        |
 
 ## Functions
 
 ### Current
 
-| Command                  | Description                                                                                                     |
-| :----------------------- | :-------------------------------------------------------------------------------------------------------------- |
-| `current_branch`         | Returns the name of the current branch.                                                                         |
-| `git_current_user_email` | Returns the `user.email` config value. (Lives in `lib/git.zsh`.)                                                |
-| `git_current_user_name`  | Returns the `user.name` config value. (Lives in `lib/git.zsh`.)                                                 |
-| `git_develop_branch`     | Returns the name of the “development” branch: `dev`, `devel`, `development` if they exist, `develop` otherwise. |
-| `git_main_branch`        | Returns the name of the main branch: `main` if it exists, `master` otherwise.                                   |
-| `grename <old> <new>`    | Renames branch `<old>` to `<new>`, including on the origin remote.                                              |
-| `gbda`                   | Deletes all merged branches                                                                                     |
-| `gbds`                   | Deletes all squash-merged branches (**Note: performance degrades with number of branches**)                     |
+| Command                  | Description                                                                                                    |
+| :----------------------- | :------------------------------------------------------------------------------------------------------------- |
+| `git_current_branch`     | Returns the name of the current branch (Lives in `lib/git.zsh`)                                                |
+| `git_current_user_email` | Returns the `user.email` config value (Lives in `lib/git.zsh`)                                                 |
+| `git_current_user_name`  | Returns the `user.name` config value (Lives in `lib/git.zsh`)                                                  |
+| `git_develop_branch`     | Returns the name of the “development” branch: `dev`, `devel`, `development` if they exist, `develop` otherwise |
+| `git_main_branch`        | Returns the name of the main branch: `main` if it exists, `master` otherwise                                   |
+| `grename <old> <new>`    | Renames branch `<old>` to `<new>`, including on the origin remote                                              |
+| `gbda`                   | Deletes all merged branches                                                                                    |
+| `gbds`                   | Deletes all squash-merged branches (**Note: performance degrades with number of branches**)                    |
 
 ### Work in Progress (WIP)
 
@@ -275,4 +273,3 @@ Note that `gwip` and `gunwip` are aliases, but are also documented here to group
 
 | Command              | Description                             | Reason                                                           |
 | :------------------- | :-------------------------------------- | :--------------------------------------------------------------- |
-| `current_repository` | Return the names of the current remotes | Didn't work properly. Use `git remote -v` instead (`grv` alias). |
