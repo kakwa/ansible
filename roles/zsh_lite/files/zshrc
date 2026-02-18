@@ -13,10 +13,24 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
-# Completion (skip if skip_global_compinit is set, e.g. in .zshenv)
+compinit(){
+}
+
+# Completion (skip if skip_global_compinit is set, e.g. in .zshenv).
+# Selective fpath: Base, Zsh, site-functions, and top-level functions dir. -C skips compaudit.
+# Use .zcompdump-lite so we don't reuse a dump that references excluded dirs.
 if [[ -z "${skip_global_compinit:-}" ]]; then
+  _zsh_lite_fpath=()
+  for _zsh_lite_d in $fpath; do
+    case "$_zsh_lite_d" in
+      (*/Completion/Base|*/Completion/Zsh|*/site-functions) _zsh_lite_fpath+=("$_zsh_lite_d") ;;
+      (*/functions)  _zsh_lite_fpath+=("$_zsh_lite_d") ;;  # e.g. /usr/share/zsh/5.9/functions
+    esac
+  done
+  [[ ${#_zsh_lite_fpath} -gt 0 ]] && fpath=("${_zsh_lite_fpath[@]}")
+  unset _zsh_lite_fpath _zsh_lite_d
   autoload -Uz compinit
-  compinit -d "${ZDOTDIR:-$HOME}/.zcompdump"
+  compinit -d "${ZDOTDIR:-$HOME}/.zcompdump-lite" -C
   zstyle ':completion:*' menu select
   zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
       /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
@@ -31,8 +45,8 @@ setopt AUTO_CD
 setopt NO_BEEP
 setopt CORRECT
 
-# Prompt: user@host:path %
-PS1='%F{green}%n@%m%f:%F{blue}%~%f%# '
+# Prompt: user@host:path % (red if root)
+[[ $EUID -eq 0 ]] && PS1='%F{red}%n@%m%f:%F{blue}%~%f%# ' || PS1='%F{green}%n@%m%f:%F{blue}%~%f%# '
 
 # --- Custom (edit in role or override in ~/.zshrc) ---
 export EDITOR="vim"
