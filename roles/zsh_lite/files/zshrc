@@ -1,0 +1,47 @@
+# /etc/zsh/zshrc (zsh-lite): system-wide minimal zsh config, no Oh My Zsh.
+# Sourced for interactive shells. Global order: zshenv, zprofile, zshrc, zlogin.
+
+READNULLCMD=${PAGER:-/usr/bin/pager}
+
+# History
+HISTSIZE=500
+SAVEHIST=500
+HISTFILE="${HISTFILE:-${ZDOTDIR:-$HOME}/.zsh_history}"
+setopt EXTENDED_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
+# Completion (skip if skip_global_compinit is set, e.g. in .zshenv)
+if [[ -z "${skip_global_compinit:-}" ]]; then
+  autoload -Uz compinit
+  compinit -d "${ZDOTDIR:-$HOME}/.zcompdump"
+  zstyle ':completion:*' menu select
+  zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+      /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+fi
+
+# run-help
+(( ${+aliases[run-help]} )) && unalias run-help
+autoload -Uz run-help
+
+# Options
+setopt AUTO_CD
+setopt NO_BEEP
+setopt CORRECT
+
+# Prompt: user@host:path %
+PS1='%F{green}%n@%m%f:%F{blue}%~%f%# '
+
+# --- Custom (edit in role or override in ~/.zshrc) ---
+export EDITOR="vim"
+export PATH="${PATH}:${HOME}/go/bin:${HOME}/.cargo/bin:${HOME}/.local/bin:/sbin:/usr/sbin"
+
+[[ "$(uname -s)" != "OpenBSD" ]] && alias tree="tree -C"
+[[ "$(uname -s)" == "OpenBSD" ]] && export TERM=xterm
+[[ "$(uname -s)" == "NetBSD" ]]  && export TERM=xterm
+
+alias gh="cd $HOME/Geek/GitHub"
+alias gu="cd $HOME/Geek/Upstream"
+alias setswaykbmap="swaymsg input 'type:keyboard' xkb_layout"

@@ -1,0 +1,55 @@
+---
+- name: Install zsh from pkgsrc
+  ansible.builtin.command:
+    cmd: bmake install
+    chdir: /usr/pkgsrc/shells/zsh
+    creates: /usr/pkg/bin/zsh
+  environment:
+    BATCH: "1"
+  when: ansible_facts.os_family == "NetBSD"
+
+- name: Install zsh with apt
+  ansible.builtin.apt:
+    name: zsh
+    state: present
+  when: ansible_facts.os_family == "Debian"
+
+- name: Install zsh with openbsd_pkg
+  community.general.openbsd_pkg:
+    name: zsh
+    state: present
+  when: ansible_facts.os_family == "OpenBSD"
+
+- name: Ensure /etc/zsh exists
+  ansible.builtin.file:
+    path: /etc/zsh
+    state: directory
+    mode: "0755"
+    owner: root
+    group: "{{ root_group[ansible_facts.os_family] }}"
+
+- name: Deploy zsh-lite zshrc to global location
+  ansible.builtin.copy:
+    src: zshrc
+    dest: /etc/zsh/zshrc
+    mode: "0644"
+    owner: root
+    group: "{{ root_group[ansible_facts.os_family] }}"
+
+- name: Create /etc/zshrc for NetBSD (source global zshrc)
+  ansible.builtin.copy:
+    content: "source /etc/zsh/zshrc\n"
+    dest: /usr/pkg/etc/zshrc
+    mode: "0644"
+    owner: root
+    group: "{{ root_group[ansible_facts.os_family] }}"
+  when: ansible_facts.os_family == "NetBSD"
+
+- name: Create /etc/zshrc for OpenBSD (source global zshrc)
+  ansible.builtin.copy:
+    content: "source /etc/zsh/zshrc\n"
+    dest: /etc/zshrc
+    mode: "0644"
+    owner: root
+    group: "{{ root_group[ansible_facts.os_family] }}"
+  when: ansible_facts.os_family == "OpenBSD"
