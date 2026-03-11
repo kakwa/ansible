@@ -12,6 +12,7 @@
       - pipewire-pulse
       - swayidle
       - wdisplays
+      - wmenu
       - i3status
       - gdm3
 

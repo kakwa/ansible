@@ -19,7 +19,14 @@ set $browser firefox
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu cat ~/.dmenu-user | dmenu | xargs swaymsg exec --
+set $menu cat ~/.dmenu-user | wmenu -i \
+  -f "Terminus 16" \
+  -N 285577 \
+  -n ffffff \
+  -M 285577 \
+  -m ffffff \
+  -S 4c7899 \
+  -s ffffff | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
 
