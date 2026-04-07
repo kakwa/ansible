@@ -31,6 +31,8 @@
       - docker.io
       - cowbuilder
       - mock
+      - apt-file
+      - ncal
     state: present
     update_cache: true
 - name: Install Astocad if possible
