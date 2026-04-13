@@ -47,3 +47,7 @@
     components: main
     architectures: amd64
     signed_by: https://packages.opentofu.org/opentofu/tofu/gpgkey
+
+- name: Update apt cache after configuring repositories
+  ansible.builtin.apt:
+    update_cache: true
