@@ -11,6 +11,7 @@
       - pipewire
       - pipewire-pulse
       - swayidle
+      - kanshi
       - wdisplays
       - wmenu
       - i3status
@@ -68,6 +69,14 @@
   copy:
     src: 40-sway-background.conf
     dest: /etc/sway/config.d/40-sway-background.conf
+    mode: 0644
+    owner: root
+    group: root
+
+- name: Install Sway idle configuration
+  copy:
+    src: 50-swayidle.conf
+    dest: /etc/sway/config.d/50-swayidle.conf
     mode: 0644
     owner: root
     group: root
