@@ -13,6 +13,6 @@
       - fwupd
       - nmap
       - tcpdump
-      - ntpsec
+      - systemd-timesyncd
     state: present
     update_cache: yes
